@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\SiteController;
+use App\Http\Controllers\ClientController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -9,4 +9,4 @@ Route::get('/', function () {
 });
 
 //                               qual a controller     qual o método
-Route::get('/produto/{id}', [SiteController::class, 'index']);
+Route::get('/clients', [ClientController::class, 'index']);

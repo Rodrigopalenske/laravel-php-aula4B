@@ -2,16 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
 use Illuminate\Http\Request;
 
-class RodrigoPalenske extends Controller
+class ClientController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        // Buscar os clientes no banco de dados
+                        // :: -> significa que esse get é um método static
+        $clients = Client::get(); # fazemos um select de tudo no banco Clients(modelo/representação) e guardamos nessa variável
+        //dd($clients);
+
+        // Mostrar um frontend listando os clientes
+        return view('clients.index', ['clients' => $clients]); // em resources view buscamos uma pasta clients
     }
 
     /**
