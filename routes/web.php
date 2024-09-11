@@ -8,5 +8,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//                               qual a controller     qual o método
-Route::get('/clients', [ClientController::class, 'index']);
+//                           qual a controller  qual o método    nome para a rota
+Route::get('/clients', [ClientController::class, 'index'])->name('clients.index');
+Route::get('/clients/{id}', [ClientController::class, 'show'])->name('clients.show');

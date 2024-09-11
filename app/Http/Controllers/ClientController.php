@@ -10,7 +10,7 @@ class ClientController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index() // listar
     {
         // Buscar os clientes no banco de dados
                         // :: -> significa que esse get é um método static
@@ -40,9 +40,13 @@ class ClientController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id) // mostrar detalhes
     {
-        //
+        // buscar o cliente pelo usuario no banco de dados
+        $client = Client::find($id);
+
+        // retornar os dados do cliente em uma view (show)
+        return view('clients.show', ['client' => $client]);
     }
 
     /**
