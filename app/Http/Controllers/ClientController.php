@@ -26,7 +26,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
+        return view('clients.create');
     }
 
     /**
@@ -34,7 +34,9 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $dados = $request->except('_token'); // remove o campo _token que vem do form
+        Client::create($dados);
+        return redirect('/clients');
     }
 
     /**
