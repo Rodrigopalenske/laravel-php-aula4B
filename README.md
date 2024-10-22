@@ -1,2 +1,2 @@
 # laravel-php-aula4B
-Projeto feito em aula com php, composer e laravel
+Projeto feito em aula com ph, composer e laravel
