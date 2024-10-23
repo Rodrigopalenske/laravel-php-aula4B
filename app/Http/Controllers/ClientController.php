@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use Illuminate\Http\Request;
+use Symfony\Component\Console\Debug\CliRequest;
 
 class ClientController extends Controller
 {
@@ -56,7 +57,9 @@ class ClientController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        // busca o cliente no banco através da variável id
+        $client = Client::find($id);
+        return view('clients.edit', ['client' => $client]);
     }
 
     /**
@@ -64,7 +67,14 @@ class ClientController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $client = Client::find($id);
+        $client->update([
+            'nome' => $request->nome,
+            'endereco' => $request->endereco,
+            'observacao' => $request->observacao
+        ]);
+
+        return redirect('/clients');
     }
 
     /**
@@ -72,6 +82,8 @@ class ClientController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $client = Client::find($id);
+        $client->delete();
+        return redirect('/clients');
     }
 }

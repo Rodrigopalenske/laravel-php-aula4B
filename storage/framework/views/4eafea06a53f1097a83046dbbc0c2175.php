@@ -1,20 +1,5 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Detalhes do cliente</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  </head>
-  <body>
-
-    <nav class="navbar navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">UniAlfa</a>
-        </div>
-    </nav>
-
-    <div class="container">
+<?php $__env->startSection('tittle', 'Detalhes do Cliente'); ?>
+<?php $__env->startSection('content'); ?>
         <div class="card">
             <div class="card-header">
                 Detalhes do cliente <?php echo e($client->nome); ?>
@@ -29,8 +14,5 @@
                 <a class="btn btn-success" href="<?php echo e(route('clients.index')); ?>">Voltar</a>
             </div>
         </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  </body>
-</html><?php /**PATH /Users/unialfa/Documents/laravel-php-aula4B/resources/views/clients/show.blade.php ENDPATH**/ ?>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Users/unialfa/Documents/laravel-php-aula4B/resources/views/clients/show.blade.php ENDPATH**/ ?>

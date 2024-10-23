@@ -22,7 +22,14 @@
                             </a>
                         </td>
                         <td><?php echo e($client->endereco); ?></td>
-                        <td></td>
+                        <td>
+                            <a href="<?php echo e(route('clients.edit', $client)); ?>" class="btn btn-primary">Atualizar</a>
+                            <form action="<?php echo e(route('clients.destroy', $client)); ?>" method="POST">
+                                <?php echo csrf_field(); ?>
+                                <?php echo method_field('DELETE'); ?>
+                                <button class="btn btn-danger" type="submit" onclick="return confirm('Tem certeza que deseja apagar?')">Apagar</button>
+                            </form>
+                        </td>
                     </tr>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </tbody>

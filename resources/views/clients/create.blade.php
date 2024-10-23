@@ -1,5 +1,5 @@
 @extends('app')
-@section('title', 'Novo Cliente')
+@section('tittle', 'Novo Cliente')
 @section('content')
     <h1>Novo Cliente</h1>
     <form action="{{ route('clients.store') }}" method="POST">
@@ -20,6 +20,6 @@
         </div>
 
         <button class="btn btn-success" type="submit">Enviar</button>
-
+        <a href="{{ route('clients.index') }}"></a>
     </form>    
 @endsection

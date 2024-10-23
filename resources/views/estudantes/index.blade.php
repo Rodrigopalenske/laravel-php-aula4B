@@ -11,6 +11,7 @@
                     <td>Nome</td>
                     <td>cpf</td>
                     <td>nascimento</td>
+                    <td>Ações</td>
                     
                 </tr>
             </thead>
