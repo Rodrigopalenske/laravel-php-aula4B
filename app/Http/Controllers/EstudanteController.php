@@ -65,13 +65,16 @@ class EstudanteController extends Controller
     {
         //Remove token antigo, pega os estudantes encontrados, salva e direciona para tela index
         $dados = $request->except('_token');
-        $estudante = Estudante::find($id);
         $dados['nascimento'] = Carbon::createFromFormat('Y-m-d', $dados['nascimento']);
-        $estudante['nome'] = $dados['nome'];
-        $estudante['cpf'] = $dados['cpf'];
-        $estudante['nascimento'] = $dados['nascimento'];
 
-        $estudante->save();
+        $estudante = Estudante::find($id);
+        $estudante->update([
+            'nome' => $dados['nome'],
+            'cpf' => $dados['cpf'],
+            'nascimento' => $dados['nascimento'],
+
+        ]);
+
         return redirect('/estudantes');
     }
 

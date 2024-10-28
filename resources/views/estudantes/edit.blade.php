@@ -4,6 +4,7 @@
     <h1>Editar Estudante</h1>
     <form action="{{ route('estudantes.edit', $estudante['id']) }}" method="POST">
         @csrf
+        @method('PUT')
         <div class="mb-3">
             <label for="nome" class="form-label">Nome</label>
             <input type="text" name="nome" id="nome" class="form-control" value="{{$estudante['nome']}}" placeholder="Digite seu nome">

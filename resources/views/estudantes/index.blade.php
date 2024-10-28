@@ -31,7 +31,11 @@
                             <a href="{{route('estudantes.edit', $estudante['id'])}}">Editar</a>
                         </td>
                         <td>
-                            <a href="{{route('estudantes.destroy', $estudante['id'])}}">Excluir</a>
+                            <form action="{{ route('estudantes.destroy', $estudante) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger" type="submit" onclick="return confirm('Tem certeza que deseja apagar?')">Apagar</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
