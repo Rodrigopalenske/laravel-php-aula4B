@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\Console\Debug\CliRequest;
 
 class ClientController extends Controller
@@ -36,6 +37,14 @@ class ClientController extends Controller
     public function store(Request $request)
     {
         $dados = $request->except('_token'); // remove o campo _token que vem do form
+        
+        if ($request->hasFile('avatar') && $request->file('avatar')->isValid()) {
+            $avatarPath = $request->file('avatar')->store('avatars', 'public');
+            $dados['avatar'] = $avatarPath;
+        }
+
+
+        
         Client::create($dados);
         return redirect('/clients');
     }
@@ -68,11 +77,16 @@ class ClientController extends Controller
     public function update(Request $request, string $id)
     {
         $client = Client::find($id);
-        $client->update([
-            'nome' => $request->nome,
-            'endereco' => $request->endereco,
-            'observacao' => $request->observacao
-        ]);
+        $dados = $request->only('nome', 'endereco', 'observacao');
+
+        if ($request->hasFile('avatar') && $request->file('avatar')->isValid()){
+            if ($client->avatar){
+                Storage::disk('public')->delete($client->avatar);
+            }
+            $avatarPath = $request->file('avatar')->store('avatars', 'public');
+            $dados['avatar'] = $avatarPath;
+        }
+        $client->update($dados);
 
         return redirect('/clients');
     }
@@ -83,6 +97,9 @@ class ClientController extends Controller
     public function destroy(string $id)
     {
         $client = Client::find($id);
+        if ($client->avatar){
+            Storage::disk('public')->delete($client->avatar);
+        }
         $client->delete();
         return redirect('/clients');
     }

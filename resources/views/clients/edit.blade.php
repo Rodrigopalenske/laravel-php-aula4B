@@ -2,7 +2,7 @@
 @section('tittle', 'Editar Cliente')
 @section('content')
     <h1>Novo Cliente</h1>
-    <form action="{{ route('clients.update', $client) }}" method="POST">
+    <form action="{{ route('clients.update', $client) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT') {{-- Transforma em um methodo put --}}
         <div class="mb-3">
@@ -19,6 +19,17 @@
             <label for="observacao" class="form-label">Observação</label>
             <textarea class="form-control" name="observacao" id="observacao" rows="3">{{$client['observacao']}}</textarea>
         </div>
+
+        <div class="mb-3">
+            <label for="avatar" class="form-label">Avatar</label>
+            <input type="file" class="form-controler" id="avatar" name="avatar" accept="image/*">
+        </div>
+
+        @if ($client->avatar)
+            <div class="mb-3">
+                <img src="{{ route('storage/' . $client->avatar) }}" alt="Avatar do cliente" class="img-thumbnail" width="150">
+            </div>
+        @endif
 
         <button class="btn btn-success" type="submit">Enviar</button>
         <a href="{{ route('clients.index') }}"></a>
