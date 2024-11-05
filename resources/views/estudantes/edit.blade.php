@@ -2,7 +2,7 @@
 @section('title', 'Editar Estudante')
 @section('content')
     <h1>Editar Estudante</h1>
-    <form action="{{ route('estudantes.edit', $estudante['id']) }}" method="POST">
+    <form action="{{ route('estudantes.update', $estudante['id']) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="mb-3">
